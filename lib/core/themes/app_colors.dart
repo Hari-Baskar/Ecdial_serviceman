@@ -22,6 +22,7 @@ class AppColors {
 
   static const pink = Colors.pink;
   static const lightBlue = Colors.lightBlue;
+  static const blue = Colors.blue;
   static const purple = Colors.purple;
   static const red = Colors.red;
 }

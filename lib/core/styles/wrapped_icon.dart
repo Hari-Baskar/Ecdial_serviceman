@@ -9,6 +9,7 @@ wrappedIcon({
   required BuildContext context,
   required IconData icon,
   required Color iconColor,
+  double? iconSize,
 }) {
   return Container(
     decoration: BoxDecoration(
@@ -18,7 +19,7 @@ wrappedIcon({
     ),
     child: Padding(
       padding: EdgeInsets.all(AppSpacing.w12),
-      child: Icon(icon, color: iconColor),
+      child: Icon(icon, color: iconColor, size: iconSize),
     ),
   );
 }
@@ -32,6 +33,45 @@ workIcon({required BuildContext context}) {
     child: Padding(
       padding: EdgeInsets.all(AppSpacing.w8),
       child: Icon(Icons.business_center_outlined, color: AppColors.orangetheme),
+    ),
+  );
+}
+
+presentIcon({required BuildContext context}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppRadius.r16),
+      color: AppColors.green.withOpacity(0.15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(AppSpacing.w8),
+      child: Icon(Icons.check_circle_outline, color: AppColors.green),
+    ),
+  );
+}
+
+absentIcon({required BuildContext context}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppRadius.r16),
+      color: AppColors.red.withOpacity(0.15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(AppSpacing.w8),
+      child: Icon(Icons.cancel, color: AppColors.red),
+    ),
+  );
+}
+
+calendarIcon({required BuildContext context}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppRadius.r16),
+      color: AppColors.blue.withOpacity(0.15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.all(AppSpacing.w8),
+      child: Icon(Icons.calendar_month_outlined, color: AppColors.blue),
     ),
   );
 }

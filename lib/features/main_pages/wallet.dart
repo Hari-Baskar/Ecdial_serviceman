@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jobs_app/core/styles/common_strings.dart';
 import 'package:jobs_app/core/styles/decoration.dart';
@@ -112,7 +113,6 @@ class Wallet extends HookConsumerWidget {
             ),
             onTap: () {},
             buttonColor: AppColors.white,
-            textColor: AppColors.black,
           ),
         ],
       ),

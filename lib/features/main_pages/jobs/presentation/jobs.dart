@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jobs_app/core/Widgets/chip.dart';
+import 'package:jobs_app/core/router/app_routes.dart';
 import 'package:jobs_app/core/styles/call.dart';
 import 'package:jobs_app/core/styles/decoration.dart';
 import 'package:jobs_app/core/styles/wrapped_icon.dart';
@@ -90,84 +92,89 @@ class Jobs extends HookConsumerWidget {
   }
 
   Widget jobsCardWidget({required BuildContext context}) {
-    return Container(
-      decoration: getCardDecoration(context: context),
-      child: Padding(
-        padding: EdgeInsets.all(AppSpacing.w16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                workIcon(context: context),
-                SizedBox(width: AppSpacing.w16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        context.push(AppRoutes.jobDetails);
+      },
+      child: Container(
+        decoration: getCardDecoration(context: context),
+        child: Padding(
+          padding: EdgeInsets.all(AppSpacing.w16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  workIcon(context: context),
+                  SizedBox(width: AppSpacing.w16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Rajesh Kumar', style: AppTextStyles.body(context)),
+                      Text(
+                        'Ac Repair',
+                        style: AppTextStyles.body(
+                          context,
+                          color: AppColors.orangetheme,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Spacer(),
+                  assigned(context: context),
+                ],
+              ),
+              SizedBox(height: AppSpacing.h12),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: AppSpacing.w8,
+                  horizontal: AppSpacing.w12,
+                ),
+                //margin: EdgeInsets.only(right: AppSpacing.w8),
+                decoration: BoxDecoration(
+                  color: AppColors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(AppRadius.r16),
+                ),
+                alignment: Alignment.center,
+                child: Row(
                   children: [
-                    Text('Rajesh Kumar', style: AppTextStyles.body(context)),
+                    Icon(Icons.location_on, color: AppColors.secondaryText),
+                    SizedBox(width: AppSpacing.w8),
                     Text(
-                      'Ac Repair',
+                      "Chennai, 600028",
                       style: AppTextStyles.body(
                         context,
-                        color: AppColors.orangetheme,
+                        fontSize: 12.sp,
+                        color: AppColors.secondaryText,
                       ),
                     ),
                   ],
                 ),
-
-                Spacer(),
-                assigned(context: context),
-              ],
-            ),
-            SizedBox(height: AppSpacing.h12),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: AppSpacing.w8,
-                horizontal: AppSpacing.w12,
               ),
-              //margin: EdgeInsets.only(right: AppSpacing.w8),
-              decoration: BoxDecoration(
-                color: AppColors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(AppRadius.r16),
-              ),
-              alignment: Alignment.center,
-              child: Row(
+              SizedBox(height: AppSpacing.h12),
+              Row(
                 children: [
-                  Icon(Icons.location_on, color: AppColors.secondaryText),
+                  Icon(Icons.access_time, color: AppColors.secondaryText),
                   SizedBox(width: AppSpacing.w8),
                   Text(
-                    "Chennai, 600028",
-                    style: AppTextStyles.body(
+                    '10:00 AM',
+                    style: AppTextStyles.small(
                       context,
-                      fontSize: 12.sp,
                       color: AppColors.secondaryText,
                     ),
                   ),
+                  Spacer(),
+                  call(context: context),
                 ],
               ),
-            ),
-            SizedBox(height: AppSpacing.h12),
-            Row(
-              children: [
-                Icon(Icons.access_time, color: AppColors.secondaryText),
-                SizedBox(width: AppSpacing.w8),
-                Text(
-                  '10:00 AM',
-                  style: AppTextStyles.small(
-                    context,
-                    color: AppColors.secondaryText,
-                  ),
-                ),
-                Spacer(),
-                call(context: context),
-              ],
-            ),
-            SizedBox(height: AppSpacing.h12),
-            Text(
-              "Job Id : 1002",
-              style: AppTextStyles.small(context, color: AppColors.grey),
-            ),
-          ],
+              SizedBox(height: AppSpacing.h12),
+              Text(
+                "Job Id : 1002",
+                style: AppTextStyles.small(context, color: AppColors.grey),
+              ),
+            ],
+          ),
         ),
       ),
     );

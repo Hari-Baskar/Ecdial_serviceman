@@ -5,6 +5,11 @@ import 'package:jobs_app/features/main_pages/home/presentation/home.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/job_details.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/job_work_flow.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/notifications.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/attendance.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/privacy_policy.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/settings.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/support.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/terms_and_conditions.dart';
 import 'package:jobs_app/features/splash_screens/splash_logo_screen.dart';
 import 'package:jobs_app/features/splash_screens/splash_screen_1.dart';
 
@@ -19,6 +24,11 @@ class AppRoutes {
   static const String notifications = '/notifications';
   static const String jobDetails = '/jobDetails';
   static const String jobWorkFlow = '/jobWorkFlow';
+  static const String settings = '/settings';
+  static const String attendance = '/attendance';
+  static const String privacyPolicy = '/privacyPolicy';
+  static const String termsAndConditions = '/termsAndConditions';
+  static const String support = '/support';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -52,6 +62,26 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.jobWorkFlow,
       builder: (context, state) => const JobWorkflowScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.settings,
+      builder: (context, state) => const Settings(),
+    ),
+    GoRoute(
+      path: AppRoutes.attendance,
+      builder: (context, state) => const Attendance(),
+    ),
+    GoRoute(
+      path: AppRoutes.privacyPolicy,
+      builder: (context, state) => const PrivacyPolicy(),
+    ),
+    GoRoute(
+      path: AppRoutes.termsAndConditions,
+      builder: (context, state) => const TermsAndConditions(),
+    ),
+    GoRoute(
+      path: AppRoutes.support,
+      builder: (context, state) => const Support(),
     ),
   ],
 );

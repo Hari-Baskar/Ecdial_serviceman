@@ -273,7 +273,7 @@ class Home extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Welcome back", style: AppTextStyles.body(context)),
+                  Text("Rajesh Kumar", style: AppTextStyles.body(context)),
 
                   Text(
                     "45.2k",

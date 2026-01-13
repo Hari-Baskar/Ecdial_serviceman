@@ -97,6 +97,44 @@ processing({required BuildContext context}) {
   );
 }
 
+present({required BuildContext context}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppRadius.r16),
+      color: AppColors.green.withOpacity(0.15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSpacing.w8,
+        vertical: AppSpacing.w4,
+      ),
+      child: Text(
+        "Present",
+        style: AppTextStyles.small(context, color: AppColors.green),
+      ),
+    ),
+  );
+}
+
+absent({required BuildContext context}) {
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppRadius.r16),
+      color: AppColors.red.withOpacity(0.15),
+    ),
+    child: Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSpacing.w8,
+        vertical: AppSpacing.w4,
+      ),
+      child: Text(
+        "Absent",
+        style: AppTextStyles.small(context, color: AppColors.red),
+      ),
+    ),
+  );
+}
+
 viewAll({required BuildContext context}) {
   return Text(
     "View All ➜",

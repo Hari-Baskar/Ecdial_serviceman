@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jobs_app/core/router/app_routes.dart';
 import 'package:jobs_app/core/styles/decoration.dart';
+import 'package:jobs_app/core/styles/wrapped_icon.dart';
 import 'package:jobs_app/core/themes/app_colors.dart';
 import 'package:jobs_app/core/widgets/radius.dart';
 import 'package:jobs_app/core/widgets/screen_size.dart';
@@ -124,7 +127,7 @@ class More extends HookConsumerWidget {
       children: [
         profileSubWidget(
           icon: Icons.person_3_outlined,
-          iconColor: AppColors.lightBlue,
+          iconColor: AppColors.blue,
           title: 'Profile',
           onTap: () {},
           context: context,
@@ -134,7 +137,9 @@ class More extends HookConsumerWidget {
           icon: Icons.calendar_today_outlined,
           iconColor: AppColors.green,
           title: 'Attendance',
-          onTap: () {},
+          onTap: () {
+            context.push(AppRoutes.attendance);
+          },
           context: context,
         ),
         SizedBox(height: AppSpacing.h8),
@@ -158,7 +163,9 @@ class More extends HookConsumerWidget {
           icon: Icons.notifications_none,
           iconColor: AppColors.pink,
           title: 'Notifications',
-          onTap: () {},
+          onTap: () {
+            context.push(AppRoutes.notifications);
+          },
           context: context,
         ),
         SizedBox(height: AppSpacing.h8),
@@ -174,7 +181,9 @@ class More extends HookConsumerWidget {
           icon: Icons.headset_mic_outlined,
           iconColor: AppColors.pink,
           title: 'Support',
-          onTap: () {},
+          onTap: () {
+            context.push(AppRoutes.support);
+          },
           context: context,
         ),
         SizedBox(height: AppSpacing.h8),
@@ -182,7 +191,9 @@ class More extends HookConsumerWidget {
           icon: Icons.settings_outlined,
           iconColor: AppColors.grey,
           title: 'Settings',
-          onTap: () {},
+          onTap: () {
+            context.push(AppRoutes.settings);
+          },
           context: context,
         ),
         SizedBox(height: AppSpacing.h8),
@@ -201,17 +212,22 @@ class More extends HookConsumerWidget {
     required IconData icon,
     required Color iconColor,
     required String title,
-    required Function onTap,
+    required VoidCallback onTap,
     required BuildContext context,
   }) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         decoration: getCardDecoration(context: context),
         padding: EdgeInsets.all(AppSpacing.w16),
         child: Row(
           children: [
-            subIcon(icon: icon, iconColor: iconColor),
+            wrappedIcon(
+              icon: icon,
+              iconColor: iconColor,
+              context: context,
+              iconSize: AppSize.width * 0.07,
+            ),
             // payoutReceivedIcon(context: context),
             SizedBox(width: AppSpacing.w16),
 

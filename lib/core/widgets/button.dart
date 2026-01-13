@@ -12,7 +12,7 @@ class AppButton extends StatelessWidget {
   final dynamic content;
   final double? width;
   final Color? buttonColor;
-  final Color? textColor;
+
   final AppButtonType type;
   final VoidCallback onTap;
 
@@ -20,7 +20,7 @@ class AppButton extends StatelessWidget {
     super.key,
     this.width,
     this.buttonColor,
-    this.textColor,
+
     required this.content,
     required this.onTap,
     this.type = AppButtonType.primary,
