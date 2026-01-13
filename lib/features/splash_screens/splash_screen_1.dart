@@ -151,7 +151,10 @@ class _SplashScreen1State extends State<SplashScreen1> {
             SizedBox(height: AppSize.height * 0.12),
             AppButton(
               onTap: () {},
-              text: "Let's Get Started",
+              content: Text(
+                "Let's Get Started",
+                style: AppTextStyles.body(context),
+              ),
               width: AppSize.width * 0.8,
             ),
             SizedBox(height: AppSpacing.h16),

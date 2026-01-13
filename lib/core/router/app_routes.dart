@@ -3,6 +3,7 @@ import 'package:jobs_app/features/auth/presentation/login_screen.dart';
 import 'package:jobs_app/features/main_pages/dashboard/presentation/bottom_navigation.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/home.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/job_details.dart';
+import 'package:jobs_app/features/main_pages/home/presentation/job_work_flow.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/notifications.dart';
 import 'package:jobs_app/features/splash_screens/splash_logo_screen.dart';
 import 'package:jobs_app/features/splash_screens/splash_screen_1.dart';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String dashBoard = '/dashBoard';
   static const String notifications = '/notifications';
   static const String jobDetails = '/jobDetails';
+  static const String jobWorkFlow = '/jobWorkFlow';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -46,6 +48,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.jobDetails,
       builder: (context, state) => const JobDetails(),
+    ),
+    GoRoute(
+      path: AppRoutes.jobWorkFlow,
+      builder: (context, state) => const JobWorkflowScreen(),
     ),
   ],
 );

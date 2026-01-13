@@ -25,7 +25,7 @@ class Notifications extends HookConsumerWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return notificationCard(context: context);
+                  return notificationCard(context: context, index: index);
                 },
               ),
             ),
@@ -39,6 +39,7 @@ class Notifications extends HookConsumerWidget {
     return Card(
       color: AppColors.white,
       elevation: 0.2,
+      margin: EdgeInsets.zero,
       child: Padding(
         padding: EdgeInsets.all(AppSpacing.w16),
         child: Column(
@@ -81,25 +82,30 @@ class Notifications extends HookConsumerWidget {
     );
   }
 
-  Widget notificationCard({required BuildContext context}) {
+  Widget notificationCard({required BuildContext context, required int index}) {
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(AppRadius.r16),
-        border: Border(
-          left: BorderSide(color: AppColors.orangetheme, width: AppSpacing.w4),
-        ),
+      decoration: index < 2
+          ? BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(AppRadius.r16),
+              border: Border(
+                left: BorderSide(
+                  color: AppColors.orangetheme,
+                  width: AppSpacing.w4,
+                ),
+              ),
 
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withOpacity(0.04), // LIGHT shadow
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withOpacity(0.04), // LIGHT shadow
+                  blurRadius: 8,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            )
+          : getCardDecoration(context: context),
       padding: EdgeInsets.all(AppSpacing.w16),
-      margin: EdgeInsets.symmetric(vertical: AppSpacing.h4),
+      margin: EdgeInsets.symmetric(vertical: AppSpacing.h6),
 
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,14 +160,15 @@ class Notifications extends HookConsumerWidget {
                       ),
                     ),
 
-                    GestureDetector(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.circle,
-                        color: AppColors.orangetheme,
-                        size: AppSize.width * 0.02,
+                    if (index < 2)
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.circle,
+                          color: AppColors.orangetheme,
+                          size: AppSize.width * 0.02,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ],

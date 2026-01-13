@@ -37,6 +37,7 @@ class Wallet extends HookConsumerWidget {
     return Card(
       color: AppColors.white,
       elevation: 0.2,
+      margin: EdgeInsets.zero,
       child: Padding(
         padding: EdgeInsets.all(AppSpacing.w16),
         child: Column(
@@ -101,7 +102,14 @@ class Wallet extends HookConsumerWidget {
           ),
           SizedBox(height: AppSpacing.h16),
           AppButton(
-            text: "Withdraw Money",
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.file_download_outlined),
+                SizedBox(width: AppSpacing.w8),
+                Text("Withdraw Money", style: AppTextStyles.body(context)),
+              ],
+            ),
             onTap: () {},
             buttonColor: AppColors.white,
             textColor: AppColors.black,

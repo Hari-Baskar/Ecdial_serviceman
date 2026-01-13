@@ -41,6 +41,7 @@ class Jobs extends HookConsumerWidget {
     return Card(
       elevation: 0.2,
       color: AppColors.white,
+      margin: EdgeInsets.zero,
       child: Padding(
         padding: EdgeInsets.all(AppSpacing.w16),
         child: Column(

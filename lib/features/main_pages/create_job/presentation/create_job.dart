@@ -157,7 +157,20 @@ class CreateJob extends HookConsumerWidget {
               ),
               SizedBox(height: AppSpacing.h24),
               AppButton(
-                text: "Create Job",
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.check_circle_outline, color: AppColors.white),
+                    SizedBox(width: AppSpacing.w8),
+                    Text(
+                      "Create Job",
+                      style: AppTextStyles.body(
+                        context,
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ],
+                ),
                 onTap: () {},
                 buttonColor: AppColors.orangetheme,
               ),
@@ -232,8 +245,8 @@ class CreateJob extends HookConsumerWidget {
       child: GestureDetector(
         onTap: pickImages,
         child: Container(
-          height: AppSize.height * 0.1,
-          width: AppSize.height * 0.1,
+          height: AppSize.width * 0.3,
+          width: AppSize.width * 0.3,
           alignment: Alignment.center,
           child: const Icon(
             Icons.camera_alt_outlined,
@@ -247,8 +260,8 @@ class CreateJob extends HookConsumerWidget {
 
   Widget imageContainer({required File img}) {
     return SizedBox(
-      height: AppSize.height * 0.1,
-      width: AppSize.height * 0.1,
+      height: AppSize.width * 0.3,
+      width: AppSize.width * 0.3,
       child: Image.file(img, fit: BoxFit.cover),
     );
   }

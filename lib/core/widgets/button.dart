@@ -9,7 +9,7 @@ import 'package:jobs_app/core/widgets/text.dart';
 enum AppButtonType { primary, secondary }
 
 class AppButton extends StatelessWidget {
-  final String text;
+  final dynamic content;
   final double? width;
   final Color? buttonColor;
   final Color? textColor;
@@ -21,7 +21,7 @@ class AppButton extends StatelessWidget {
     this.width,
     this.buttonColor,
     this.textColor,
-    required this.text,
+    required this.content,
     required this.onTap,
     this.type = AppButtonType.primary,
   });
@@ -40,16 +40,7 @@ class AppButton extends StatelessWidget {
           vertical: AppSpacing.w12,
           horizontal: AppSpacing.w12,
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: AppTextStyles.body(context).copyWith(
-              fontWeight: FontWeight.w400,
-              color: textColor ?? AppColors.white,
-              fontSize: 13.sp, // Looks better and modern
-            ),
-          ),
-        ),
+        child: Center(child: content),
       ),
     );
   }

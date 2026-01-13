@@ -30,6 +30,7 @@ class More extends HookConsumerWidget {
   Widget headers({required BuildContext context}) {
     return Card(
       color: AppColors.white,
+      margin: EdgeInsets.zero,
       elevation: 0.2,
       child: Padding(
         padding: EdgeInsets.all(AppSpacing.w16),

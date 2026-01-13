@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:jobs_app/core/Widgets/screen_size.dart';
+import 'package:jobs_app/core/router/app_routes.dart';
 import 'package:jobs_app/core/styles/call.dart';
 import 'package:jobs_app/core/styles/decoration.dart';
 import 'package:jobs_app/core/styles/wrapped_text.dart';
@@ -39,12 +41,36 @@ class JobDetails extends HookConsumerWidget {
           ),
         ],
       ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(AppSpacing.w16),
+        child: SizedBox(
+          height: AppSize.height * 0.07,
+          child: AppButton(
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.play_arrow_outlined, color: AppColors.white),
+                SizedBox(width: AppSpacing.w8),
+                Text(
+                  "Start Job",
+                  style: AppTextStyles.body(context, color: AppColors.white),
+                ),
+              ],
+            ),
+            onTap: () {
+              context.push(AppRoutes.jobWorkFlow);
+            },
+            buttonColor: AppColors.orangetheme,
+          ),
+        ),
+      ),
     );
   }
 
   Widget headers({required BuildContext context}) {
     return Card(
       color: AppColors.white,
+      margin: EdgeInsets.zero,
       elevation: 0.2,
       child: Padding(
         padding: EdgeInsets.all(AppSpacing.w16),
@@ -241,7 +267,17 @@ class JobDetails extends HookConsumerWidget {
           ),
           SizedBox(height: AppSpacing.h8),
           AppButton(
-            text: 'Get Direction',
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.navigation_outlined, color: AppColors.white),
+                SizedBox(width: AppSpacing.w8),
+                Text(
+                  "Get Directions",
+                  style: AppTextStyles.body(context, color: AppColors.white),
+                ),
+              ],
+            ),
             onTap: () {},
             buttonColor: AppColors.lightBlue,
           ),
