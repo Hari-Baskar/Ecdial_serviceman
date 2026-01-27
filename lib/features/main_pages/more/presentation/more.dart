@@ -129,7 +129,9 @@ class More extends HookConsumerWidget {
           icon: Icons.person_3_outlined,
           iconColor: AppColors.blue,
           title: 'Profile',
-          onTap: () {},
+          onTap: () {
+            context.push(AppRoutes.profile);
+          },
           context: context,
         ),
         SizedBox(height: AppSpacing.h8),

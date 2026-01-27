@@ -21,19 +21,23 @@ class Attendance extends HookConsumerWidget {
       appBar: AppBar(
         title: Text("Attendance", style: AppTextStyles.body(context)),
       ),
-      body: Expanded(
-        child: ListView(
-          padding: EdgeInsets.all(AppSpacing.w16),
-          children: [
-            punchInOut(context: context),
-            SizedBox(height: AppSpacing.h8),
-            thisMonthAttendance(context: context),
-            SizedBox(height: AppSpacing.h8),
-            CalendarCard(),
-            SizedBox(height: AppSpacing.h8),
-            recentAttendance(context: context),
-          ],
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(AppSpacing.w16),
+              children: [
+                punchInOut(context: context),
+                SizedBox(height: AppSpacing.h8),
+                thisMonthAttendance(context: context),
+                SizedBox(height: AppSpacing.h8),
+                CalendarCard(),
+                SizedBox(height: AppSpacing.h8),
+                recentAttendance(context: context),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

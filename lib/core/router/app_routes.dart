@@ -6,10 +6,11 @@ import 'package:jobs_app/features/main_pages/home/presentation/job_details.dart'
 import 'package:jobs_app/features/main_pages/home/presentation/job_work_flow.dart';
 import 'package:jobs_app/features/main_pages/home/presentation/notifications.dart';
 import 'package:jobs_app/features/main_pages/more/presentation/attendance.dart';
-import 'package:jobs_app/features/main_pages/more/presentation/privacy_policy.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/privacy_policy/ui/privacy_policy.dart';
+import 'package:jobs_app/features/main_pages/more/presentation/profile.dart';
 import 'package:jobs_app/features/main_pages/more/presentation/settings.dart';
 import 'package:jobs_app/features/main_pages/more/presentation/support.dart';
-import 'package:jobs_app/features/main_pages/more/presentation/terms_and_conditions.dart';
+import 'package:jobs_app/features/main_pages/more/terms_and_conditions/ui/terms_and_conditions.dart';
 import 'package:jobs_app/features/splash_screens/splash_logo_screen.dart';
 import 'package:jobs_app/features/splash_screens/splash_screen_1.dart';
 
@@ -29,6 +30,7 @@ class AppRoutes {
   static const String privacyPolicy = '/privacyPolicy';
   static const String termsAndConditions = '/termsAndConditions';
   static const String support = '/support';
+  static const String profile = '/profile';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -82,6 +84,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.support,
       builder: (context, state) => const Support(),
+    ),
+    GoRoute(
+      path: AppRoutes.profile,
+      builder: (context, state) => const Profile(),
     ),
   ],
 );

@@ -7,6 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jobs_app/core/themes/app_colors.dart';
 import 'package:jobs_app/core/widgets/button.dart';
+import 'package:jobs_app/core/widgets/image_picker_common.dart/image_picker_service.dart';
+import 'package:jobs_app/core/widgets/image_picker_common.dart/image_picker_source_select.dart';
 import 'package:jobs_app/core/widgets/screen_size.dart';
 import 'package:jobs_app/core/widgets/spacing_size.dart';
 import 'package:jobs_app/core/widgets/text.dart';
@@ -20,19 +22,20 @@ class ImagesAfterWork extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     int maxImages = 5;
     final images = useState<List<File>>([]);
-    final picker = useMemoized(() => ImagePicker());
-    Future<void> pickImages() async {
-      if (images.value.length >= maxImages) return;
 
-      final picked = await picker.pickMultiImage();
-      if (picked.isEmpty) return;
+    Future<void> addImages() async {
+      final source = await showImageSourceSheet(context);
+      if (source == null) return;
 
-      final remaining = maxImages - images.value.length;
+      final picked = await AppImagePicker.pick(
+        source: source,
+        multiple: true,
+        maxImages: 5,
+      );
 
-      images.value = [
-        ...images.value,
-        ...picked.take(remaining).map((e) => File(e.path)),
-      ];
+      final remaining = 5 - images.value.length;
+
+      images.value = [...images.value, ...picked.take(remaining)];
     }
 
     return Padding(
@@ -51,11 +54,11 @@ class ImagesAfterWork extends HookConsumerWidget {
 
           SizedBox(height: AppSpacing.h32),
           Wrap(
-            spacing: AppSpacing.w8,
+            spacing: AppSpacing.w4,
             runSpacing: AppSpacing.w4,
             children: [
               for (var i in images.value) ...[imageContainer(img: i)],
-              pickImageWidget(pickImages),
+              pickImageWidget(addImages),
             ],
           ),
           SizedBox(height: AppSpacing.h32),
@@ -97,9 +100,12 @@ class ImagesAfterWork extends HookConsumerWidget {
   }
 
   Widget imageContainer({required File img}) {
-    return SizedBox(
-      height: AppSize.width * 0.3,
-      width: AppSize.width * 0.3,
+    return Container(
+      height: AppSize.width * 0.27,
+      width: AppSize.width * 0.27,
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.orangetheme),
+      ),
       child: Image.file(img, fit: BoxFit.cover),
     );
   }

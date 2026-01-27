@@ -19,8 +19,8 @@ class AppTextStyles {
     double? fontSize,
     FontWeight? fontWeight,
   }) => GoogleFonts.poppins(
-    fontSize: 18.sp,
-    fontWeight: FontWeight.bold,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
     color: color ?? Theme.of(context).textTheme.bodyLarge?.color,
   );
 

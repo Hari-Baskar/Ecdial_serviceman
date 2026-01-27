@@ -17,7 +17,7 @@ class DashBoard extends HookConsumerWidget {
       const Home(),
       const Jobs(),
       const CreateJob(),
-      const Wallet(),
+      // const Wallet(),
       const More(),
     ];
     final currentPage = useState<int>(0);
@@ -35,10 +35,10 @@ class DashBoard extends HookConsumerWidget {
             label: 'Jobs',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Create'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet_outlined),
-            label: 'Wallet',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.account_balance_wallet_outlined),
+          //   label: 'Wallet',
+          // ),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'More'),
         ],
         unselectedItemColor: Colors.grey,

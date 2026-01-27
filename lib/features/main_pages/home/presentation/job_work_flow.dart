@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +22,9 @@ class JobWorkflowScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Timer? _timer;
+    final seconds = useState<int>(0);
+    bool isRunning = false;
     final currentStep = useState<int>(1);
     const totalSteps = 7;
 
@@ -29,6 +34,27 @@ class JobWorkflowScreen extends HookConsumerWidget {
       }
     }
 
+    void startTimer() {
+      if (isRunning) return;
+
+      isRunning = true;
+      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        seconds.value++;
+      });
+    }
+
+    void stopTimer() {
+      _timer?.cancel();
+      _timer = null;
+      isRunning = false;
+    }
+
+    String formatTime(int sec) {
+      final m = (sec ~/ 60).toString().padLeft(2, '0');
+      final s = (sec % 60).toString().padLeft(2, '0');
+      return "$m:$s";
+    }
+
     return Scaffold(
       body: Column(
         children: [
@@ -36,9 +62,15 @@ class JobWorkflowScreen extends HookConsumerWidget {
             context: context,
             currentStep: currentStep.value,
             totalSteps: totalSteps,
+            seconds: formatTime(seconds.value),
           ),
           Expanded(
-            child: Pages(step: currentStep.value, onNext: goNext),
+            child: Pages(
+              step: currentStep.value,
+              onNext: goNext,
+              startTimer: startTimer,
+              stopTimer: stopTimer,
+            ),
           ),
         ],
       ),
@@ -49,6 +81,7 @@ class JobWorkflowScreen extends HookConsumerWidget {
     required BuildContext context,
     required int currentStep,
     required int totalSteps,
+    required dynamic seconds,
   }) {
     return Card(
       color: AppColors.white,
@@ -71,6 +104,11 @@ class JobWorkflowScreen extends HookConsumerWidget {
                 SizedBox(width: AppSpacing.w16),
 
                 Text("Job Workflow", style: AppTextStyles.body(context)),
+                Spacer(),
+                Text(
+                  seconds,
+                  style: AppTextStyles.body(context, color: AppColors.green),
+                ),
               ],
             ),
             StepIndicator(currentStep: currentStep, totalSteps: 7),
@@ -141,8 +179,15 @@ class StepIndicator extends StatelessWidget {
 class Pages extends HookConsumerWidget {
   final int step;
   final VoidCallback onNext;
+  final VoidCallback startTimer;
+  final VoidCallback stopTimer;
 
-  Pages({required this.step, required this.onNext});
+  Pages({
+    required this.step,
+    required this.onNext,
+    required this.startTimer,
+    required this.stopTimer,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -154,7 +199,7 @@ class Pages extends HookConsumerWidget {
         return ImagesBeforeWork(onStarted: onNext);
 
       case 3:
-        return JobTimer(onConfirmed: onNext);
+        return JobTimer(onConfirmed: onNext, startTimer: startTimer);
 
       case 4:
         return PartsUsed(onConfirmed: onNext);

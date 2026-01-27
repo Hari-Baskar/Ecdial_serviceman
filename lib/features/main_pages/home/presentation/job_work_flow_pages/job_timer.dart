@@ -9,8 +9,13 @@ import 'package:jobs_app/core/widgets/text.dart';
 
 class JobTimer extends HookConsumerWidget {
   final VoidCallback onConfirmed;
+  final VoidCallback startTimer;
 
-  const JobTimer({super.key, required this.onConfirmed});
+  const JobTimer({
+    super.key,
+    required this.onConfirmed,
+    required this.startTimer,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,7 +55,10 @@ class JobTimer extends HookConsumerWidget {
                 ),
               ],
             ),
-            onTap: onConfirmed,
+            onTap: () {
+              startTimer();
+              onConfirmed();
+            },
             buttonColor: AppColors.orangetheme,
           ),
         ],

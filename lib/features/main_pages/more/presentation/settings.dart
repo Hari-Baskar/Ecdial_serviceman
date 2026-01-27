@@ -26,42 +26,44 @@ class Settings extends HookConsumerWidget {
         ),
         title: Text('Settings', style: AppTextStyles.body(context)),
       ),
-
-      body: Expanded(
-        child: ListView(
-          padding: EdgeInsets.all(AppSpacing.w16),
-          children: [
-            subWidget(
-              context: context,
-              icon: Icons.language_outlined,
-              iconColor: AppColors.blue,
-              title: 'Language',
-              subtitle: 'English',
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.all(AppSpacing.w16),
+              children: [
+                subWidget(
+                  context: context,
+                  icon: Icons.language_outlined,
+                  iconColor: AppColors.blue,
+                  title: 'Language',
+                  subtitle: 'English',
+                ),
+                SizedBox(height: AppSpacing.h8),
+                subWidget(
+                  context: context,
+                  icon: Icons.error_outline,
+                  iconColor: AppColors.purple,
+                  title: 'About App',
+                  subtitle: 'version 1.0.0',
+                ),
+                SizedBox(height: AppSpacing.h8),
+                termsAndPolicy(context: context),
+                SizedBox(height: AppSpacing.h8),
+                appInformation(context: context),
+                SizedBox(height: AppSpacing.h12),
+                AppButton(
+                  content: Text(
+                    "Logout",
+                    style: AppTextStyles.body(context, color: AppColors.white),
+                  ),
+                  onTap: () {},
+                  buttonColor: AppColors.red,
+                ),
+              ],
             ),
-            SizedBox(height: AppSpacing.h8),
-            subWidget(
-              context: context,
-              icon: Icons.error_outline,
-              iconColor: AppColors.purple,
-              title: 'About App',
-              subtitle: 'version 1.0.0',
-            ),
-            SizedBox(height: AppSpacing.h8),
-            termsAndPolicy(context: context),
-            SizedBox(height: AppSpacing.h8),
-            appInformation(context: context),
-            SizedBox(height: AppSpacing.h12),
-            AppButton(
-              content: Text(
-                "Logout",
-                style: AppTextStyles.body(context, color: AppColors.white),
-              ),
-              onTap: () {},
-
-              buttonColor: AppColors.red,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -98,7 +100,6 @@ class Settings extends HookConsumerWidget {
               ),
             ],
           ),
-
           Spacer(),
           Icon(
             Icons.arrow_forward_ios_sharp,
@@ -116,7 +117,7 @@ class Settings extends HookConsumerWidget {
       padding: EdgeInsets.all(AppSpacing.w16),
       child: Column(
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () {
               context.push(AppRoutes.termsAndConditions);
             },
@@ -138,7 +139,6 @@ class Settings extends HookConsumerWidget {
                     ),
                   ],
                 ),
-
                 Spacer(),
                 Icon(
                   Icons.arrow_forward_ios_sharp,
@@ -149,7 +149,7 @@ class Settings extends HookConsumerWidget {
             ),
           ),
           Divider(height: AppSpacing.h24, color: AppColors.lightGrey),
-          GestureDetector(
+          InkWell(
             onTap: () {
               context.push(AppRoutes.privacyPolicy);
             },
@@ -168,7 +168,6 @@ class Settings extends HookConsumerWidget {
                     Text("Privacy Policy", style: AppTextStyles.body(context)),
                   ],
                 ),
-
                 Spacer(),
                 Icon(
                   Icons.arrow_forward_ios_sharp,
